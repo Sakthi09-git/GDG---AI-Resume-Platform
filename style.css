@@ -37,7 +37,7 @@ button {
 }
 button:hover { background: #5a67d8; }
 
-/* -------------------- RESUME CARD -------------------- */
+/* resume card */
 .resume-card {
   background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   margin-bottom: 20px; transition: all 0.3s ease;
