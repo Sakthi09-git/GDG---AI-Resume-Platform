@@ -26,14 +26,41 @@ window.login = async () => {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("✅ Account Created & Logged In");
     } catch (err) {
-      alert("❌ Auth error");
+      alert("❌ Auth error! Incorrect Password! Try again!");
       console.error(err);
     }
   }
 };
 
-// ================= GLOBAL IMAGE DATA =================
 let profileImageBase64 = "";
+
+// ================= GEMINI CONFIG =================
+const GEMINI_API_KEY = "AIzaSyA1mtAG6dqJtUPooQAqnUP4wCmsy83iqI8";
+const GEMINI_URL =
+  https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY};
+
+// ================= GEMINI FUNCTION =================
+const improveProjectsWithGemini = async (education, skills, projects) => {
+  try {
+    const res = await fetch(GEMINI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{
+            text: Improve this resume projects for a ${education} student with skills ${skills}. Projects: ${projects}
+          }]
+        }]
+      })
+    });
+
+    const data = await res.json();
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || projects;
+  } catch (err) {
+    console.error("Gemini Error:", err);
+    return projects; // fallback
+  }
+};
 
 // ================= RESUME FORM =================
 document.getElementById("resumeForm").addEventListener("submit", async (e) => {
@@ -44,11 +71,11 @@ document.getElementById("resumeForm").addEventListener("submit", async (e) => {
   const year = document.getElementById("year").value.trim();
   const cgpa = document.getElementById("cgpa").value.trim();
   const skills = document.getElementById("skills").value.trim();
-  const projects = document.getElementById("projects").value.trim();
-
+  let projects = document.getElementById("projects").value.trim();
   const photoInput = document.getElementById("profilePic");
+  projects = await improveProjectsWithGemini(education, skills, projects);
 
-  /* ================= RESUME RENDER FUNCTION ================= */
+  /* ================= RENDER RESUME ================= */
   const renderResume = () => {
     resumeName.textContent = Name: ${name};
     resumeEducation.textContent = Department: ${education};
@@ -56,7 +83,6 @@ document.getElementById("resumeForm").addEventListener("submit", async (e) => {
     resumeCGPA.textContent = CGPA: ${cgpa};
     resumeProjects.textContent = projects;
 
-    // skills
     resumeSkills.innerHTML = "";
     skills.split(",").forEach(skill => {
       if (!skill.trim()) return;
@@ -66,7 +92,10 @@ document.getElementById("resumeForm").addEventListener("submit", async (e) => {
       resumeSkills.appendChild(span);
     });
 
-    // image
+    const score = calculateResumeScore(skills, projects, cgpa);
+    document.getElementById("resumeScore").textContent = score + "%";
+
+
     if (profileImageBase64) {
       const img = document.getElementById("profileImage");
       img.src = profileImageBase64;
@@ -74,19 +103,19 @@ document.getElementById("resumeForm").addEventListener("submit", async (e) => {
     }
   };
 
-  /* ================= PROFILE IMAGE READ (FIXED) ================= */
+  /* ================= IMAGE ================= */
   if (photoInput && photoInput.files.length > 0) {
     const reader = new FileReader();
     reader.onload = () => {
       profileImageBase64 = reader.result;
-      renderResume(); // 🔥 resume render AFTER image loaded
+      renderResume();
     };
     reader.readAsDataURL(photoInput.files[0]);
   } else {
-    renderResume(); // no image
+    renderResume();
   }
 
-  // ---------- INTERNSHIP LOGIC ----------
+  // ================= INTERNSHIPS =================
   internships.innerHTML = "";
   const edu = education.toLowerCase();
   const skillLower = skills.toLowerCase();
@@ -133,7 +162,7 @@ document.getElementById("resumeForm").addEventListener("submit", async (e) => {
     internships.appendChild(div);
   });
 
-  // ---------- FIRESTORE SAVE ----------
+  // ================= FIRESTORE SAVE =================
   try {
     await addDoc(collection(db, "resumes"), {
       name,
@@ -166,7 +195,7 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
   }
 
   doc.setFontSize(16);
-  doc.text("AI Generated Resume", 105, y, { align: "center" });
+  doc.text("Resume", 105, y, { align: "center" });
   y += 15;
 
   doc.setFontSize(12);
@@ -184,3 +213,24 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
 
   doc.save("Resume.pdf");
 });
+// ================= RESUME SCORE =================
+const calculateResumeScore = (skills, projects, cgpa) => {
+  let score = 0;
+
+  // Skills strength
+  const skillCount = skills.split(",").filter(s => s.trim()).length;
+  if (skillCount >= 3) score += 30;
+  if (skillCount >= 5) score += 10;
+
+  // Projects strength
+  if (projects.length >= 30) score += 30;
+
+  // CGPA strength
+  const cg = parseFloat(cgpa);
+  if (!isNaN(cg)) {
+    if (cg >= 7) score += 20;
+    if (cg >= 8.5) score += 10;
+  }
+
+  return Math.min(score, 100);
+};
