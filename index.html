@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Resume Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ATTRACTIVE THEME SELECT -->
+  <div class="theme-selector">
+    <select id="themeSelect">
+      <option value="default">🌈 Default</option>
+      <option value="light">🌞 Light</option>
+      <option value="dark">🌙 Dark</option>
+      <option value="blue">🔵 Blue</option>
+      <option value="green">🟢 Green</option>
+      <option value="purple">🟣 Purple</option>
+    </select>
+  </div>
+
+  <h1>🚀 AI Resume Platform</h1>
+  <p class="subtitle">Powered by Google Gemini AI + Firebase</p>
+
+  <!-- LOGIN -->
+  <h3>Login / Signup</h3>
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login / Signup</button>
+
+  <hr>
+
+  <!-- RESUME FORM -->
+  <h3>Generate Resume</h3>
+  <form id="resumeForm">
+    <input id="name" type="text" placeholder="Name" required>
+    <input id="education" type="text" placeholder="Education (CSE/IT/ECE/AIML/EEE)" required>
+    <input id="year" type="text" placeholder="Year / Semester">
+    <input id="cgpa" type="text" placeholder="CGPA">
+    <input id="github" type="text" placeholder="GitHub / Portfolio Link">
+    <textarea id="skills" placeholder="Skills (comma separated)" required></textarea>
+    <textarea id="projects" placeholder="Projects Done"></textarea>
+    <label>Upload Profile Picture:</label>
+    <input type="file" id="profilePic">
+    <button type="submit">Generate Resume</button>
+  </form>
+
+  <!-- DOWNLOAD BUTTON -->
+  <button id="downloadBtn">📥 Download Resume as PDF</button>
+
+  <!-- RESUME CARD -->
+  <h3>📄 Generated Resume</h3>
+  <div id="resumeCard" class="resume-card">
+    <img id="profileImage" src="" alt="Profile Picture" class="profile-img">
+    <div class="resume-section">
+      <h4>👤 Profile</h4>
+      <p id="resumeName"></p>
+      <p id="resumeEducation"></p>
+      <p id="resumeYear"></p>
+      <p id="resumeCGPA"></p>
+      <p id="resumeGithub"></p>
+    </div>
+    <div class="resume-section">
+      <h4>🛠 Skills</h4>
+      <div id="resumeSkills" class="badge-container"></div>
+    </div>
+    <div class="resume-section">
+      <h4>📂 Projects</h4>
+      <p id="resumeProjects"></p>
+    </div>
+  </div>
+
+  <!-- INTERNSHIPS -->
+  <h3>🎯 Recommended Internships</h3>
+  <div id="internships" class="internship-grid"></div>
+
+</div>
+
+<!-- Scripts -->
+<script src="theme.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>

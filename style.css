@@ -1,0 +1,115 @@
+/* -------------------- BODY / CONTAINER -------------------- */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.container {
+  background: #ffffff;
+  padding: 30px;
+  width: 95%;
+  max-width: 700px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+h1, h3 { text-align: center; color: #4b0082; }
+.subtitle { text-align: center; color: gray; margin-bottom: 20px; }
+
+/* -------------------- INPUTS / BUTTONS -------------------- */
+input, textarea, select {
+  width: 100%; margin: 10px 0; padding: 12px;
+  border-radius: 8px; border: 1px solid #ccc; background: transparent; color: #333;
+  transition: all 0.3s ease;
+}
+
+button {
+  width: 100%; padding: 12px; background: #667eea; color: white;
+  font-size: 16px; border: none; border-radius: 8px; cursor: pointer; margin: 5px 0;
+  transition: all 0.3s ease;
+}
+button:hover { background: #5a67d8; }
+
+/* -------------------- RESUME CARD -------------------- */
+.resume-card {
+  background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  margin-bottom: 20px; transition: all 0.3s ease;
+}
+.profile-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; display: block; }
+
+.resume-section { margin-bottom: 15px; }
+.resume-section h4 { margin-bottom: 8px; color: #667eea; }
+
+/* -------------------- BADGES -------------------- */
+.badge-container { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { background: #667eea; color: white; padding: 5px 10px; border-radius: 20px; font-size: 13px; transition: all 0.3s ease; }
+
+/* -------------------- INTERNSHIP CARDS -------------------- */
+.internship-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin-top:10px; }
+.internship-card { background: #eef; padding: 15px; border-radius: 12px; text-align: center; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+.internship-icon { font-size: 30px; margin-bottom: 8px; }
+.internship-title { font-weight: bold; text-align:center; }
+
+/* -------------------- THEME STYLES -------------------- */
+body.dark { background: linear-gradient(135deg,#0f2027,#203a43,#2c5364); color: #f1f1f1; }
+body.dark .container { background: #1e1e1e; color: #f1f1f1; }
+body.dark input, body.dark textarea { color:#f1f1f1; border:1px solid #555; }
+body.dark button { background:#4fd1c5; }
+body.dark .resume-section h4 { color:#4fd1c5; }
+body.dark .badge { background:#4fd1c5; }
+body.dark .internship-card { background:#2b2b2b; color:#f1f1f1; }
+
+body.light { background:#f0f0f0; color:#333; }
+body.light .container { background:#ffffff; color:#333; }
+body.light input, body.light textarea { color:#333; border:1px solid #ccc; }
+body.light button { background:#667eea; }
+body.light .resume-section h4 { color:#667eea; }
+body.light .badge { background:#667eea; color:white; }
+body.light .internship-card { background:#eef; color:#333; }
+
+body.blue { background: linear-gradient(135deg, #667eea, #764ba2); color:#fff; }
+body.blue .container { background:#ffffff; color:#333; }
+body.blue button { background:#667eea; }
+body.blue .badge { background:#667eea; }
+body.blue .resume-section h4 { color:#667eea; }
+body.blue .internship-card { background:#eef; color:#333; }
+
+body.green { background: linear-gradient(135deg,#43e97b,#38f9d7); color:#fff; }
+body.green .container { background:#ffffff; color:#333; }
+body.green button { background:#43e97b; }
+body.green .badge { background:#43e97b; }
+body.green .resume-section h4 { color:#43e97b; }
+body.green .internship-card { background:#eef; color:#333; }
+
+body.purple { background: linear-gradient(135deg,#9d50bb,#6e48aa); color:#fff; }
+body.purple .container { background:#ffffff; color:#333; }
+body.purple button { background:#9d50bb; }
+body.purple .badge { background:#9d50bb; }
+body.purple .resume-section h4 { color:#9d50bb; }
+body.purple .internship-card { background:#eef; color:#333; }
+
+/* -------------------- THEME SELECTOR -------------------- */
+.theme-selector { display: flex; justify-content: center; margin-bottom: 20px; }
+.theme-selector select {
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.theme-selector select:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+.theme-selector option { padding: 10px; }
