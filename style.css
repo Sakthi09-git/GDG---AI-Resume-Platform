@@ -37,7 +37,7 @@ button {
 }
 button:hover { background: #5a67d8; }
 
-/* resume card */
+/* -------------------- RESUME CARD -------------------- */
 .resume-card {
   background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   margin-bottom: 20px; transition: all 0.3s ease;
@@ -113,3 +113,212 @@ body.purple .internship-card { background:#eef; color:#333; }
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 .theme-selector option { padding: 10px; }
+/* ================= RESUME VISIBILITY FIX (FINAL) ================= */
+
+/* Force resume container always visible */
+#resume {
+  display: block !important;
+}
+
+/* Resume card visibility */
+.resume-card {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Resume text visibility */
+.resume-card p,
+.resume-card span,
+.resume-card div,
+.resume-card h4 {
+  color: #000000 !important;
+}
+
+
+/* ===== DARK MODE OVERRIDE ===== */
+body.dark .resume-card {
+  background: #1e1e1e !important;
+  color: #ffffff !important;
+}
+
+body.dark .resume-card p,
+body.dark .resume-card span,
+body.dark .resume-card div,
+body.dark .resume-card h4 {
+  color: #ffffff !important;
+}
+
+/* ===== FORCE FIX FOR ALL COLOR THEMES ===== */
+body.blue .resume-card,
+body.green .resume-card,
+body.purple .resume-card,
+body.light .resume-card {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.blue .resume-card *,
+body.green .resume-card *,
+body.purple .resume-card *,
+body.light .resume-card * {
+  color: #000000 !important;
+}
+/* ================= INTERNSHIP VISIBILITY FIX ================= */
+
+/* Internship cards base */
+.internship-card {
+  background: #eef !important;
+  color: #000000 !important;
+}
+
+/* Internship text */
+.internship-card span,
+.internship-card div,
+.internship-card p {
+  color: #000000 !important;
+}
+
+/* Internship icon */
+.internship-icon {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+/* ===== DARK MODE ===== */
+body.dark .internship-card {
+  background: #2b2b2b !important;
+  color: #ffffff !important;
+}
+
+body.dark .internship-card span,
+body.dark .internship-card div,
+body.dark .internship-card p {
+  color: #ffffff !important;
+}
+
+/* ===== FORCE FIX FOR ALL COLOR THEMES ===== */
+body.blue .internship-card,
+body.green .internship-card,
+body.purple .internship-card,
+body.light .internship-card {
+  background: #eef !important;
+  color: #000000 !important;
+}
+
+body.blue .internship-card *,
+body.green .internship-card *,
+body.purple .internship-card *,
+body.light .internship-card * {
+  color: #000000 !important;
+}
+/* ================= INTERNSHIP COLOR THEMES ================= */
+
+.internship-card {
+  padding: 15px;
+  border-radius: 14px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.internship-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ---- COLORS ---- */
+.frontend {
+  background: linear-gradient(135deg, #2196f3, #64b5f6);
+  color: #ffffff;
+}
+
+.backend {
+  background: linear-gradient(135deg, #9c27b0, #ce93d8);
+  color: #ffffff;
+}
+
+.fullstack {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  color: #ffffff;
+}
+
+.ai {
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+  color: #000000;
+}
+
+.embedded {
+  background: linear-gradient(135deg, #f44336, #e57373);
+  color: #ffffff;
+}
+
+.electronics {
+  background: linear-gradient(135deg, #795548, #a1887f);
+  color: #ffffff;
+}
+
+.default-internship {
+  background: linear-gradient(135deg, #607d8b, #90a4ae);
+  color: #ffffff;
+}
+
+.internship-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+/* ================= BUTTON ENHANCEMENTS ================= */
+
+button {
+  position: relative;
+  overflow: hidden;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Glow effect */
+button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+button:hover::after {
+  opacity: 1;
+}
+/* ================= SUNSET THEME ================= */
+
+body.sunset {
+  background: linear-gradient(135deg, #ff512f, #f09819);
+  color: #ffffff;
+}
+
+body.sunset .container {
+  background: #ffffff;
+  color: #222;
+}
+
+body.sunset button {
+  background: linear-gradient(135deg, #ff512f, #f09819);
+  color: #fff;
+}
+
+body.sunset .badge {
+  background: linear-gradient(135deg, #ff512f, #f09819);
+}
+
+body.sunset .resume-section h4 {
+  color: #ff512f;
+}

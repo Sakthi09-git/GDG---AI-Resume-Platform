@@ -12,13 +12,14 @@
   <!-- THEME SELECT -->
   <div class="theme-selector">
     <select id="themeSelect">
-      <option value="default">🌈 Default</option>
-      <option value="light">🌞 Light</option>
-      <option value="dark">🌙 Dark</option>
-      <option value="blue">🔵 Blue</option>
-      <option value="green">🟢 Green</option>
-      <option value="purple">🟣 Purple</option>
-    </select>
+    <option value="default">🌈 Default</option>
+    <option value="light">🌞 Light</option>
+    <option value="dark">🌙 Dark</option>
+    <option value="green">🟢 Green</option>
+    <option value="purple">🟣 Purple</option>
+    <option value="sunset">🌅 Sunset</option>
+   </select>
+
   </div>
 
   <h1>🚀 AI Resume Platform</h1>
@@ -39,7 +40,7 @@
     <input id="education" type="text" placeholder="Education (CSE/IT/ECE/AIML/EEE)" required>
     <input id="year" type="text" placeholder="Year / Semester">
     <input id="cgpa" type="text" placeholder="CGPA">
-    <input id="github" type="text" placeholder="GitHub / Portfolio Link">
+    <input id="github" type="url" placeholder="GitHub / Portfolio Link">
     <textarea id="skills" placeholder="Skills (comma separated)" required></textarea>
     <textarea id="projects" placeholder="Projects Done"></textarea>
     <label>Upload Profile Picture:</label>
@@ -53,7 +54,7 @@
   <!-- RESUME CARD -->
   <h3>📄 Generated Resume</h3>
   <div id="resumeCard" class="resume-card">
-    <img id="profileImage" src="" alt="Profile Picture" class="profile-img">
+    <img id="profileImage" src="" alt=" Profile Picture" class="profile-img">
     <div class="resume-section">
       <h4>👤 Profile</h4>
       <p id="resumeName"></p>
