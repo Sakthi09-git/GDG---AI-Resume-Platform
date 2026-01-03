@@ -1,4 +1,4 @@
-// ================= FIREBASE IMPORT =================
+// ============= FIREBASE IMPORT ===========
 import {
   auth,
   db,
